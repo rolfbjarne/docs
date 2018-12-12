@@ -4,6 +4,16 @@
 
 https://medium.com/@robaboukhalil/the-weird-wondrous-world-of-bash-arrays-a86e5adf2c69
 https://stackoverflow.com/questions/2188199/how-to-use-double-or-single-brackets-parentheses-curly-braces
+https://www.tldp.org/LDP/abs/html/string-manipulation.html
+
+## String manipulation
+
+### Substring Removal
+
+* Delete shortest match of $substring from front of $string: ${string#substring}
+* Delete longest match of $substring from front of $string: ${string##substring}
+* Delete shortest match of $substring from end of $string: ${string%substring}
+* Delete longest match of $substring from end of $string: ${string%%substring}
 
 ## Arrays
 
@@ -41,3 +51,10 @@ for index in "${!arr[@]}"; do
 done
 ```
 
+### For each line in file
+
+```shell
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    echo "Text read from file: $line"
+done < file
+```
