@@ -19,7 +19,12 @@ CLEAR=$(tput sgr0)
 
 ```shell
 ARG1=defaultValue
+SKIP_NEXT=
 for i in "$@"; do
+	if test -n "$SKIP_NEXT"; then
+		SKIP_NEXT=
+		continue
+	fi
 	case $1 in
 		--help | -? | -h)
 			echo "$(basename "$0"): --arg1=value1"
@@ -31,11 +36,10 @@ for i in "$@"; do
 			;;
 		--arg1)
 			ARG1="$2"
-			shift 2
+			SKIP_NEXT=1
 			;;
 		--arg1=*)
 			ARG1="${i#*=}"
-			shift
 			;;
 		*)
 			echo "${RED}$(basename "$0"): Unknown option: $i. Pass --help to view the available options.${CLEAR}"
