@@ -6,6 +6,15 @@ https://medium.com/@robaboukhalil/the-weird-wondrous-world-of-bash-arrays-a86e5a
 https://stackoverflow.com/questions/2188199/how-to-use-double-or-single-brackets-parentheses-curly-braces
 https://www.tldp.org/LDP/abs/html/string-manipulation.html
 
+## Colors
+
+```shell
+WHITE=$(tput setaf 7)
+BLUE=$(tput setaf 6)
+RED=$(tput setaf 9)
+CLEAR=$(tput sgr0)
+```
+
 ## Argument parsing
 
 ```shell
@@ -29,7 +38,7 @@ for i in "$@"; do
 			shift
 			;;
 		*)
-			echo "$(basename "$0"): Unknown option: $i"
+			echo "${RED}$(basename "$0"): Unknown option: $i. Pass --help to view the available options.${CLEAR}"
 			exit 1
 			;;
 	esac
