@@ -6,6 +6,36 @@ https://medium.com/@robaboukhalil/the-weird-wondrous-world-of-bash-arrays-a86e5a
 https://stackoverflow.com/questions/2188199/how-to-use-double-or-single-brackets-parentheses-curly-braces
 https://www.tldp.org/LDP/abs/html/string-manipulation.html
 
+## Argument parsing
+
+```shell
+ARG1=defaultValue
+for i in "$@"; do
+	case $1 in
+		--help | -? | -h)
+			echo "$(basename "$0"): --arg1=value1"
+			echo "    <tool description>"
+			echo "    Options:"
+			echo "        -h --help:         Show this help"
+			echo "        --arg1=<value>:    Argument 1"
+			exit 0
+			;;
+		--arg1)
+			ARG1="$2"
+			shift 2
+			;;
+		--arg1=*)
+			ARG1="${i#*=}"
+			shift
+			;;
+		*)
+			echo "$(basename "$0"): Unknown option: $i"
+			exit 1
+			;;
+	esac
+done
+```
+
 ## String manipulation
 
 ### Substring Removal
