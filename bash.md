@@ -66,7 +66,7 @@ done
 arr=()
 ```
 
-### Calculate array size
+### Calculate array size / array length
 
 ```shell
 $(#arr[@])
