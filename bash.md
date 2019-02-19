@@ -69,7 +69,7 @@ arr=()
 ### Calculate array size / array length
 
 ```shell
-$(#arr[@])
+${#arr[@]}
 ```
 
 ### Append value
