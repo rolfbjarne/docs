@@ -26,7 +26,7 @@ for i in "$@"; do
 		continue
 	fi
 	case $1 in
-		--help | -? | -h)
+		--help | -\? | -h)
 			echo "$(basename "$0"): --arg1=value1"
 			echo "    <tool description>"
 			echo "    Options:"
