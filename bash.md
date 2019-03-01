@@ -25,7 +25,7 @@ for i in "$@"; do
 		SKIP_NEXT=
 		continue
 	fi
-	case $1 in
+	case $i in
 		--help | -\? | -h)
 			echo "$(basename "$0"): --arg1=value1"
 			echo "    <tool description>"
@@ -101,3 +101,13 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     echo "Text read from file: $line"
 done < file
 ```
+
+### Assign command output to array
+
+```shell
+my_array=()
+while IFS= read -r line; do
+    my_array+=( "$line" )
+done < <( my_command )
+```
+
