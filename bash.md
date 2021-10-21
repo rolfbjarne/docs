@@ -19,30 +19,31 @@ CLEAR=$(tput sgr0)
 
 ```shell
 ARG1=defaultValue
-SKIP_NEXT=
-for i in "$@"; do
-	if test -n "$SKIP_NEXT"; then
-		SKIP_NEXT=
-		continue
-	fi
+while [[ $# -gt 0 ]]; do
 	case $i in
 		--help | -\? | -h)
 			echo "$(basename "$0"): --arg1=value1"
 			echo "    <tool description>"
 			echo "    Options:"
 			echo "        -h --help:         Show this help"
+			echo "        -v --verbose:      Enable verbose script"
 			echo "        --arg1=<value>:    Argument 1"
 			exit 0
 			;;
+		--verbose | -v)
+			set -x
+			shift
+			;;
 		--arg1)
 			ARG1="$2"
-			SKIP_NEXT=1
+			shift 2
 			;;
 		--arg1=*)
-			ARG1="${i#*=}"
+			ARG1="${1#*=}"
+			shift
 			;;
 		*)
-			echo "${RED}$(basename "$0"): Unknown option: $i. Pass --help to view the available options.${CLEAR}"
+			echo "${RED}$(basename "$0"): Unknown option: ${WHITE}$1${RED}. Pass --help to view the available options.${CLEAR}"
 			exit 1
 			;;
 	esac
