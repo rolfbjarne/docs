@@ -20,7 +20,7 @@ CLEAR=$(tput sgr0)
 ```shell
 ARG1=defaultValue
 while [[ $# -gt 0 ]]; do
-	case $i in
+	case $1 in
 		--help | -\? | -h)
 			echo "$(basename "$0"): --arg1=value1"
 			echo "    <tool description>"
